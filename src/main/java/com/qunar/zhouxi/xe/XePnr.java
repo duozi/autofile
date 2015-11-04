@@ -41,7 +41,7 @@ public class XePnr {
         List<String> pnrList = readPnrFromFile();
         logger.info("all pnr:{}", pnrList);
         invokeXE(pnrList);
-        sendEmail("zhouxi.zhou@qunar.com", "xepnr", "test", "test");
+        sendEmail("zhouxi.zhou@qunar.com", "test", "test");
     }
 
     /**
@@ -100,16 +100,16 @@ public class XePnr {
 
     }
 
-    public void sendEmail(String from, String to, String subject, String body) {
+    public void sendEmail(String to, String subject, String body) {
         JavaMailSenderImpl javaMailSender = new JavaMailSenderImpl();
         //设定server host
         javaMailSender.setHost("mta3.corp.qunar.com");
-        javaMailSender.setUsername("zhouxi.zhou");
-        javaMailSender.setPassword("zxq1w2e3.");
+        javaMailSender.setUsername("ttsadmin@qunar.com");
+        javaMailSender.setPassword("nxtHYZWf");
         //建立邮件消息
         SimpleMailMessage mailMessage = new SimpleMailMessage();
         mailMessage.setTo(to);
-        mailMessage.setFrom(from);
+        mailMessage.setFrom("zhouxi.zhou@qunar.com");
         mailMessage.setSubject(subject);
         mailMessage.setText(body);
 
