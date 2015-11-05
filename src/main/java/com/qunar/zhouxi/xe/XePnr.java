@@ -31,7 +31,7 @@ import java.util.List;
 @Component
 public class XePnr {
     private static final Logger logger = LoggerFactory.getLogger(XePnr.class);
-    public static  String PNR_PATH = "/server/pnr_";
+    public static String PNR_PATH ;
     public static final String PCC = "7YI0";
     StringBuffer stringBuffer=new StringBuffer();
 
@@ -49,8 +49,7 @@ public class XePnr {
         TaskMonitor taskMonitor = TaskHolder.getKeeper();
         Logger qschedulelogger = taskMonitor.getLogger();   //向qschedule输出日志
 
-
-        PNR_PATH=PNR_PATH+getTime()+".txt";
+        PNR_PATH = "/server/pnr_"+getTime()+".txt";
         logger.info("file path :{}",PNR_PATH);
         qschedulelogger.info("file path :{}",PNR_PATH);
         List<String> pnrList = readPnrFromFile();
@@ -70,6 +69,7 @@ public class XePnr {
             sendEmail(stringBuffer.toString());
             qschedulelogger.info(stringBuffer.toString());
         }
+
     }
 
     /**
@@ -78,8 +78,8 @@ public class XePnr {
      * @return
      */
     public List<String> readPnrFromFile() {
-        String testFilePath = PNR_PATH;
-        File testFile = new File(testFilePath);
+
+        File testFile = new File(PNR_PATH);
         if (!testFile.exists()) {
             logger.error("file is not exit");
 //            stringBuffer.append("no pnr to xe");
