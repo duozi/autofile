@@ -8,7 +8,7 @@
         </encoder>
     </appender>
 
-    <appender name="msgAppender" class="ch.qos.logback.core.ConsoleAppender">
+    <appender name="msgAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
 
         <File>${catalina.base}/logs/f_flight_qa_xepnr.log</File>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">

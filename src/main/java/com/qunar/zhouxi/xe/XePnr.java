@@ -46,7 +46,11 @@ public class XePnr {
         PNR_PATH=PNR_PATH+getTime()+".txt";
         logger.info("file path :----{}",PNR_PATH);
         List<String> pnrList = readPnrFromFile();
-        logger.info("all pnr to xe are :{}", pnrList);
+        if(pnrList.size()==0){
+            logger.info("no pnr to xe");
+            return;
+        }
+        logger.info("all pnr to xe is/are :{}", pnrList);
         invokeXE(pnrList);
         if (!stringBuffer.toString().isEmpty()) {
             sendEmail(stringBuffer.toString());
@@ -133,7 +137,6 @@ public class XePnr {
                 mimeMessageHelper.setSubject(getTime()+" xepnr result");
                 mimeMessageHelper.setText(text);
                 mimeMessageHelper.setTo("zhouxi.zhou@qunar.com");
-
                 mailSender.send(mimeMessageHelper.getMimeMessage());
             }
             return true;
