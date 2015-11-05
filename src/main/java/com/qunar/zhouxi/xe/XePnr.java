@@ -31,7 +31,7 @@ public class XePnr {
     private static final Logger logger = LoggerFactory.getLogger(XePnr.class);
     public static final String PNR_PATH = "/home/pnr";
     public static final String PCC = "7YI0";
-    StringBuffer stringBuffer;
+    StringBuffer stringBuffer=new StringBuffer();
     @Resource
     GdsProxyService gdsProxyService;
 
