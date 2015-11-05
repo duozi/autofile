@@ -44,6 +44,7 @@ public class XePnr {
     @QSchedule("qschedule.zhouxi.xepnr")
     public void run() {
         PNR_PATH=PNR_PATH+getTime()+".txt";
+        logger.info("file path :----{}",PNR_PATH);
         List<String> pnrList = readPnrFromFile();
         logger.info("all pnr to xe are :{}", pnrList);
         invokeXE(pnrList);
@@ -68,7 +69,7 @@ public class XePnr {
         List<String> lines = new ArrayList<String>();
         try {
             lines = Files.readLines(testFile, Charsets.UTF_8);
-            stringBuffer.append(lines.size()+" pnr to xe are: " + lines + "\n");
+
         } catch (IOException e) {
             e.printStackTrace();
             logger.error("read pnr file error");
@@ -89,6 +90,7 @@ public class XePnr {
             logger.info("no pnr to cancel");
             return;
         } else {
+            stringBuffer.append(pnrList.size()+" pnr to xe are: " + pnrList + "\n");
             UapiCreateSessionCondition uapiCreateSessionCondition = new UapiCreateSessionCondition();
             BaseResponse baseResponse = gdsProxyService.createSession(PCC, uapiCreateSessionCondition);
             logger.info("SessionId is [{}]", baseResponse.getSessionId());
