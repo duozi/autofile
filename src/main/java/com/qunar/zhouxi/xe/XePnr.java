@@ -25,7 +25,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 
 @Component
@@ -166,9 +166,11 @@ public class XePnr {
         }
     }
     public  String getTime(){
-        Date date=new Date();
-        SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd-HH");
-        String today=format.format(date);
+        Calendar calendar = Calendar.getInstance();
+        /* HOUR_OF_DAY 指示一天中的小时 */
+        calendar.set(Calendar.HOUR_OF_DAY, calendar.get(Calendar.HOUR_OF_DAY) - 1);
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd-HH");
+        String today=df.format(calendar.getTime());
         return today;
     }
 
