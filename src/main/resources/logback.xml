@@ -10,9 +10,9 @@
 
     <appender name="msgAppender" class="ch.qos.logback.core.ConsoleAppender">
 
-        <File>${catalina.base}/logs/f_flight_qa_xepnr.log</File>
+        <File>/home/q/www/xepnr/logs/f_flight_qa_xepnr.log</File>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${catalina.base}/logs/f_flight_qa_xepnr.%d{yyyy-MM-dd-HH}.log</fileNamePattern>
+            <fileNamePattern>/home/q/www/xepnr/logs/f_flight_qa_xepnr.%d{yyyy-MM-dd-HH}.log</fileNamePattern>
             <maxHistory>30</maxHistory>
         </rollingPolicy>
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
