@@ -27,7 +27,7 @@ import java.util.List;
 @Component
 public class XePnr {
     private static final Logger logger = LoggerFactory.getLogger(XePnr.class);
-    public static final String PNR_PATH = "..\\cancelpnr\\src\\main\\resources\\test.txt";
+    public static final String PNR_PATH = "..\\f_flight_qa_xepnr\\src\\main\\resources\\test.txt";
     public static final String PCC = "7YI0";
     @Resource
     GdsProxyService gdsProxyService;
@@ -60,10 +60,9 @@ public class XePnr {
             lines = Files.readLines(testFile, Charsets.UTF_8);
         } catch (IOException e) {
             e.printStackTrace();
+            logger.error("read pnr file error");
         }
-        for (String line : lines) {
-            System.out.println(line);
-        }
+
         return lines;
     }
 
