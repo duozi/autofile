@@ -81,7 +81,7 @@ public class XePnr {
                 UapiCalCelPnrCondition uapiCalCelPnrCondition= new UapiCalCelPnrCondition();
                 uapiCalCelPnrCondition.setPnrCode(pnr);
                 BaseResponse cancelResponse = cancelOnePnr(baseResponse.getSessionId(), uapiCalCelPnrCondition);
-                logger.info("----------cancel pnt{} is {}", pnr, cancelResponse.isSuccess());
+                logger.info("----------cancel pnr{} is {}", pnr, cancelResponse.isSuccess());
             }
         }
 
