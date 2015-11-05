@@ -61,17 +61,19 @@ public class XePnr {
         File testFile = new File(testFilePath);
         if (!testFile.exists()) {
             logger.error("file is not exit");
-            // stringBuffer.append("no pnr to xe");
+            stringBuffer.append("no pnr to xe");
             return null;
         }
         List<String> lines = new ArrayList<String>();
         try {
             lines = Files.readLines(testFile, Charsets.UTF_8);
+            stringBuffer.append("all pnr to xe are: " + lines + "\n");
         } catch (IOException e) {
             e.printStackTrace();
             logger.error("read pnr file error");
+            stringBuffer.append("read pnr file error");
         }
-        stringBuffer.append("all pnr to xe are: " + lines + "\n");
+
         return lines;
     }
 
@@ -82,6 +84,7 @@ public class XePnr {
      */
     public void invokeXE(List<String> pnrList) {
         if (pnrList == null || pnrList.size() == 0) {
+            stringBuffer.append("no pnr to cancel");
             logger.info("no pnr to cancel");
             return;
         } else {
