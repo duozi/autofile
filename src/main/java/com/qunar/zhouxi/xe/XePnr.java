@@ -27,7 +27,7 @@ import java.util.List;
 @Component
 public class XePnr {
     private static final Logger logger = LoggerFactory.getLogger(XePnr.class);
-    public static final String PNR_PATH = "..\\f_flight_qa_xepnr\\src\\main\\resources\\test.txt";
+    public static final String PNR_PATH = "/home/pnr";
     public static final String PCC = "7YI0";
     @Resource
     GdsProxyService gdsProxyService;
