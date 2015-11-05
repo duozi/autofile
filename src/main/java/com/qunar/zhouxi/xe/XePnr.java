@@ -7,23 +7,22 @@ package com.qunar.zhouxi.xe;
 import com.google.common.base.Charsets;
 import com.google.common.io.Files;
 import com.qunar.fuwu.gdsproxy.api.GdsProxyService;
-import com.qunar.fuwu.gdsproxy.request.BaseCondition;
 import com.qunar.fuwu.gdsproxy.request.uapi.UapiCalCelPnrCondition;
 import com.qunar.fuwu.gdsproxy.request.uapi.UapiCreateSessionCondition;
 import com.qunar.fuwu.gdsproxy.response.BaseResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
 import qunar.tc.qschedule.config.QSchedule;
 
 import javax.annotation.Resource;
+import javax.mail.internet.MimeMessage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 
 @Component
 public class XePnr {
@@ -33,7 +32,11 @@ public class XePnr {
     @Resource
     GdsProxyService gdsProxyService;
 
-    private BaseCondition baseCondition=new BaseCondition();
+    @Resource
+    JavaMailSenderImpl mailSender;
+
+    static String emailFrom = "zhouxi.zhou@qunar.com";
+
 
     @QSchedule("qschedule.zhouxi.xepnr")
     public void run() {
@@ -41,7 +44,7 @@ public class XePnr {
         List<String> pnrList = readPnrFromFile();
         logger.info("all pnr:{}", pnrList);
         invokeXE(pnrList);
-        sendEmail("zhouxi.zhou@qunar.com", "test", "test");
+        sendEmail("test");
     }
 
     /**
@@ -100,27 +103,25 @@ public class XePnr {
 
     }
 
-    public void sendEmail(String to, String subject, String body) {
-        JavaMailSenderImpl javaMailSender = new JavaMailSenderImpl();
-        //设定server host
-        javaMailSender.setHost("mta3.corp.qunar.com");
-        javaMailSender.setUsername("ttsadmin@qunar.com");
-        javaMailSender.setPassword("nxtHYZWf");
-        //建立邮件消息
-        SimpleMailMessage mailMessage = new SimpleMailMessage();
-        mailMessage.setTo(to);
-        mailMessage.setFrom("zhouxi.zhou@qunar.com");
-        mailMessage.setSubject(subject);
-        mailMessage.setText(body);
+    private synchronized boolean sendEmail(String body) {
+        MimeMessage mimeMessage = mailSender.createMimeMessage();
+        MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage);
 
-        Properties properties = new Properties();
-        properties.put("mail.smtp.auth", "false");
-        properties.put("mail.smtp.timeout", "25000");
-        javaMailSender.setJavaMailProperties(properties);
+        try {
+            String text=body;
+            if(text!=null && text.length()>0){
+                mimeMessageHelper.setFrom(emailFrom);
+                mimeMessageHelper.setSubject("xepnr");
+                mimeMessageHelper.setText(text);
+                mimeMessageHelper.setTo("zhouxi.zhou@qunar.com");
 
-        javaMailSender.send(mailMessage);
-
-        logger.info("邮件发送成功………………………………");
+                mailSender.send(mimeMessageHelper.getMimeMessage());
+            }
+            return true;
+        } catch (Exception e) {
+            logger.error("exception in send mail ", e);
+            return false;
+        }
     }
 
     public void setGdsProxyService(String gdsProxyService) {

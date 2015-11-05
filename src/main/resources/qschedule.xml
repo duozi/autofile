@@ -8,14 +8,10 @@
 http://www.qunar.com/schema/qschedule http://www.qunar.com/schema/qschedule/qschedule.xsd
 http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
-    <context:property-placeholder location="classpath:qschedule.properties" ignore-unresolvable="true"/>
+    <context:property-placeholder location="classpath:*.properties" ignore-unresolvable="true"/>
 
     <!-- 普通的bean，用来执行QSchedule任务 -->
-
     <qschedule:config  port="${registry.port}"/>
-    <!--此标签等价于创建了ScheduleProvider实例-->
-    <!--<qschedule:task id="flight.qa.fresh_demo.li.jiang.checkdb" ref="checkDbTask" method="doWork"/>-->
-    <!--<qschedule:task id="flight.qa.fresh_demo.li.jiang.checkdb" ref="checkDbTask" method="doWork"/>-->
-    <!--此标签等价于ScheduleProvider的schedule方法-->
+
 </beans>
-        <!--2181 dubbo服务用，20070 qschedule自己通信用，与自己的worker未被占用-->
+
