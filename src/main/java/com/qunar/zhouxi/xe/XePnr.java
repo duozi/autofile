@@ -151,8 +151,13 @@ public class XePnr {
                 mimeMessageHelper.setFrom(emailFrom);
                 mimeMessageHelper.setSubject(getTime()+" xepnr result");
                 mimeMessageHelper.setText(text);
-                mimeMessageHelper.setTo("zhouxi.zhou@qunar.com");
+              String[] nameList=new String[3];
+                nameList[0]="zhouxi.zhou@qunar.com";
+                nameList[1]="wenxia.wei@qunar.com";
+                nameList[2]="meng.sun@qunar.com";
+                mimeMessageHelper.setTo(nameList);
                 mailSender.send(mimeMessageHelper.getMimeMessage());
+
             }
             return true;
         } catch (Exception e) {
