@@ -46,7 +46,7 @@ public class XePnr {
         PNR_PATH=PNR_PATH+getTime()+".txt";
         logger.info("file path :----{}",PNR_PATH);
         List<String> pnrList = readPnrFromFile();
-        if(pnrList.size()==0){
+        if(pnrList==null||pnrList.size()==0){
             logger.info("no pnr to xe");
             return;
         }
