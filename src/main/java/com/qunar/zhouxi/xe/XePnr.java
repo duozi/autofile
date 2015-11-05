@@ -21,7 +21,9 @@ import javax.annotation.Resource;
 import javax.mail.internet.MimeMessage;
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Component
@@ -29,6 +31,7 @@ public class XePnr {
     private static final Logger logger = LoggerFactory.getLogger(XePnr.class);
     public static final String PNR_PATH = "/home/pnr";
     public static final String PCC = "7YI0";
+    StringBuffer stringBuffer;
     @Resource
     GdsProxyService gdsProxyService;
 
@@ -40,11 +43,12 @@ public class XePnr {
 
     @QSchedule("qschedule.zhouxi.xepnr")
     public void run() {
-        logger.info("----------test");
         List<String> pnrList = readPnrFromFile();
-        logger.info("all pnr:{}", pnrList);
+        logger.info("all pnr to xe are :{}", pnrList);
         invokeXE(pnrList);
-        sendEmail("test");
+        if (!stringBuffer.toString().isEmpty()) {
+            sendEmail(stringBuffer.toString());
+        }
     }
 
     /**
@@ -55,6 +59,11 @@ public class XePnr {
     public List<String> readPnrFromFile() {
         String testFilePath = PNR_PATH;
         File testFile = new File(testFilePath);
+        if (!testFile.exists()) {
+            logger.error("file is not exit");
+            // stringBuffer.append("no pnr to xe");
+            return null;
+        }
         List<String> lines = new ArrayList<String>();
         try {
             lines = Files.readLines(testFile, Charsets.UTF_8);
@@ -62,7 +71,7 @@ public class XePnr {
             e.printStackTrace();
             logger.error("read pnr file error");
         }
-
+        stringBuffer.append("all pnr to xe are: " + lines + "\n");
         return lines;
     }
 
@@ -72,16 +81,21 @@ public class XePnr {
      * @param pnrList
      */
     public void invokeXE(List<String> pnrList) {
-        if (pnrList.size() == 0) {
+        if (pnrList == null || pnrList.size() == 0) {
             logger.info("no pnr to cancel");
+            return;
         } else {
-            UapiCreateSessionCondition uapiCreateSessionCondition= new UapiCreateSessionCondition();
+            UapiCreateSessionCondition uapiCreateSessionCondition = new UapiCreateSessionCondition();
             BaseResponse baseResponse = gdsProxyService.createSession(PCC, uapiCreateSessionCondition);
+            logger.info("SessionId is [{}]", baseResponse.getSessionId());
+            stringBuffer.append("SessionId is :" + baseResponse.getSessionId() + "\n");
             for (String pnr : pnrList) {
-                UapiCalCelPnrCondition uapiCalCelPnrCondition= new UapiCalCelPnrCondition();
+                UapiCalCelPnrCondition uapiCalCelPnrCondition = new UapiCalCelPnrCondition();
                 uapiCalCelPnrCondition.setPnrCode(pnr);
                 BaseResponse cancelResponse = cancelOnePnr(baseResponse.getSessionId(), uapiCalCelPnrCondition);
-                logger.info("----------cancel pnr{} is {}", pnr, cancelResponse.isSuccess());
+                stringBuffer.append("cancel pnr :" + pnr + "-----" + cancelResponse.isSuccess());
+                logger.info("----------cancel pnr  [{}] is {}", pnr, cancelResponse.isSuccess());
+
             }
         }
 
@@ -107,10 +121,14 @@ public class XePnr {
         MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage);
 
         try {
-            String text=body;
-            if(text!=null && text.length()>0){
+            String text = body;
+            if (text != null && text.length() > 0) {
                 mimeMessageHelper.setFrom(emailFrom);
-                mimeMessageHelper.setSubject("xepnr");
+                Date date=new Date();
+                SimpleDateFormat format=new SimpleDateFormat("yyyy/MM/dd");
+                String today=format.format(date);
+
+                mimeMessageHelper.setSubject(today+" xepnr result");
                 mimeMessageHelper.setText(text);
                 mimeMessageHelper.setTo("zhouxi.zhou@qunar.com");
 
