@@ -25,7 +25,7 @@
 
     <logger name="com.qunar.zhouxi.xe.XePnr" level="INFO" additivity="false">
         <appender-ref ref="msgAppender"/>
-        <appender-ref ref="console"/>
+        <!--<appender-ref ref="console"/>-->
     </logger>
     <root level="INFO">
         <appender-ref ref="msgAppender"/>
