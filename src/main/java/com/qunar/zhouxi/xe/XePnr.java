@@ -16,6 +16,8 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
 import qunar.tc.qschedule.config.QSchedule;
+import qunar.tc.schedule.TaskHolder;
+import qunar.tc.schedule.TaskMonitor;
 
 import javax.annotation.Resource;
 import javax.mail.internet.MimeMessage;
@@ -32,6 +34,7 @@ public class XePnr {
     public static  String PNR_PATH = "/server/pnr_";
     public static final String PCC = "7YI0";
     StringBuffer stringBuffer=new StringBuffer();
+
     @Resource
     GdsProxyService gdsProxyService;
 
@@ -43,20 +46,29 @@ public class XePnr {
 
     @QSchedule("qschedule.zhouxi.xepnr")
     public void run() {
+        TaskMonitor taskMonitor = TaskHolder.getKeeper();
+        Logger qschedulelogger = taskMonitor.getLogger();   //向qschedule输出日志
+
+
         PNR_PATH=PNR_PATH+getTime()+".txt";
-        logger.info("file path :----{}",PNR_PATH);
+        logger.info("file path :{}",PNR_PATH);
+        qschedulelogger.info("file path :{}",PNR_PATH);
         List<String> pnrList = readPnrFromFile();
         if(pnrList==null){
+            qschedulelogger.info("file is not exit");
             return ;
         }
         if(pnrList.size()==0){
             logger.info("no pnr to xe");
+            qschedulelogger.info("no pnr to xe");
             return;
         }
         logger.info("all pnr to xe is/are :{}", pnrList);
+        qschedulelogger.info("all pnr to xe is/are :{}", pnrList);
         invokeXE(pnrList);
         if (!stringBuffer.toString().isEmpty()) {
             sendEmail(stringBuffer.toString());
+            qschedulelogger.info(stringBuffer.toString());
         }
     }
 
