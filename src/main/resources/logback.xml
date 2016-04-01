@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration debug="true">
+    <property name="normalPattern" value="[%d{yyyy-MM-dd HH:mm:ss} %5p %c:%L] %m%n"/>
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${normalPattern}</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="msgAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+
+        <File>${catalina.base}/logs/f_flight_qa_xepnr.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${catalina.base}/logs/f_flight_qa_xepnr.%d{yyyy-MM-dd-HH}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+        <encoder charset="UTF-8">
+            <pattern>${normalPattern}</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="com.qunar.zhouxi.xe.XePnr" level="INFO" additivity="false">
+        <appender-ref ref="msgAppender"/>
+        <!--<appender-ref ref="console"/>-->
+    </logger>
+    <root level="INFO">
+        <appender-ref ref="msgAppender"/>
+        <appender-ref ref="console"/>
+    </root>
+</configuration>
