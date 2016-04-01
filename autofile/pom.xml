@@ -1,0 +1,82 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.qunar.flight.autofile</groupId>
+    <artifactId>autofile</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0.0-SNAPSHOT</version>
+    <modules>
+        <module>api</module>
+        <module>provider</module>
+    </modules>
+    <name>com.qunar.flight.autofile</name>
+    <url>http://maven.apache.org</url>
+    <parent>
+        <groupId>qunar.common.</groupId>
+        <artifactId>qunar-supom-generic</artifactId>
+        <version>1.3.7</version>
+    </parent>
+
+    <properties>
+        <qunar.common.version>8.2.12</qunar.common.version>
+        <com.alibaba.fastjson.version>1.2.6</com.alibaba.fastjson.version>
+    </properties>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.apache.curator</groupId>
+                <artifactId>curator-recipes</artifactId>
+                <version>2.7.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.qunar.base</groupId>
+                <artifactId>meerkat-mybatis</artifactId>
+                <version>2.2.0</version>
+            </dependency>
+            <dependency>
+                <groupId>com.qunar.base</groupId>
+                <artifactId>meerkat-web</artifactId>
+                <version>2.2.3</version>
+            </dependency>
+            <!--mail-->
+            <dependency>
+                <groupId>javax.mail</groupId>
+                <artifactId>mail</artifactId>
+                <version>1.4.5</version>
+            </dependency>
+
+            <dependency>
+                <groupId>qunar.tc.qschedule</groupId>
+                <artifactId>qschedule-client</artifactId>
+                <version>1.0.6</version>
+            </dependency>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.12</version>
+            </dependency>
+            <dependency>
+                <groupId>com.qunar.fuwu</groupId>
+                <artifactId>gdsproxy.api</artifactId>
+                <version>2.1.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>io.netty</groupId>
+                <artifactId>netty</artifactId>
+                <version>3.9.5.Final</version>
+            </dependency>
+            <dependency>
+                <groupId>com.qunar.dubbo</groupId>
+                <artifactId>dubbo</artifactId>
+                <version>3.1.10</version>
+            </dependency>
+        </dependencies>
+
+    </dependencyManagement>
+
+
+
+    <build>
+        <finalName>autofile</finalName>
+    </build>
+</project>

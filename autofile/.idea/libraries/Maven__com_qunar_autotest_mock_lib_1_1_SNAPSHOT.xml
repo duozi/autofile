@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.qunar.autotest:mock-lib:1.1-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/qunar/autotest/mock-lib/1.1-SNAPSHOT/mock-lib-1.1-20160310.024939-20.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/qunar/autotest/mock-lib/1.1-SNAPSHOT/mock-lib-1.1-20160310.024939-20-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/qunar/autotest/mock-lib/1.1-SNAPSHOT/mock-lib-1.1-20160310.024939-20-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
