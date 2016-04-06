@@ -24,12 +24,14 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
         <module name="api" />
+        <module name="autofile.api" />
         <module name="provider" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="api" target="1.6" />
       <module name="autofile" target="1.6" />
+      <module name="autofile.api" target="1.6" />
       <module name="provider" target="1.6" />
     </bytecodeTargetLevel>
   </component>
