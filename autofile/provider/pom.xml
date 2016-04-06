@@ -13,10 +13,15 @@
     <artifactId>provider</artifactId>
     <packaging>war</packaging>
     <dependencies>
-
         <dependency>
-            <groupId>com.qunar.fuwu</groupId>
-            <artifactId>gdsproxy.api</artifactId>
+            <groupId>com.qunar.flight</groupId>
+            <artifactId>ibeplus.api</artifactId>
+            <version>1.0.8</version>
+        </dependency>
+        <dependency>
+            <groupId>com.qunar.flight.autofile</groupId>
+            <artifactId>autofile.api</artifactId>
+            <version>1.0.0</version>
         </dependency>
         <!--spring-->
         <dependency>
@@ -182,26 +187,11 @@
             <artifactId>qmonitor</artifactId>
             <version>1.0.2</version>
         </dependency>
-        <dependency>
-            <groupId>com.qunar.base</groupId>
-            <artifactId>qunit-core</artifactId>
-            <version>1.0.5.1-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>com.qunar.base</groupId>
-            <artifactId>qunit-rpc</artifactId>
-            <version>1.0.5-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>com.qunar.base</groupId>
-            <artifactId>qunit-core</artifactId>
-            <version>1.0.5.1-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>com.qunar.base</groupId>
-            <artifactId>qunit-core</artifactId>
-            <version>1.0.5-SNAPSHOT</version>
-        </dependency>
-    </dependencies>
 
+
+    </dependencies>
+    <build>
+        <finalName>ROOT</finalName>
+
+    </build>
 </project>

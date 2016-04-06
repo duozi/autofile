@@ -1,7 +1,7 @@
 <component name="ArtifactManager">
   <artifact type="war" name="provider:war">
     <output-path>$PROJECT_DIR$/provider/target</output-path>
-    <root id="archive" name="autofile.war">
+    <root id="archive" name="ROOT.war">
       <element id="artifact" artifact-name="provider:war exploded" />
     </root>
   </artifact>

@@ -16,13 +16,13 @@ import java.lang.reflect.Type;
 
 @Service(value = "getXmlServiceImpl")
 public class GetXmlServiceImpl implements GetXmlService {
-    private final static Logger logger = LoggerFactory.getLogger(GetXmlService.class);
+    private final static Logger logger = LoggerFactory.getLogger(GetXmlServiceImpl.class);
     public static StringBuffer result = new StringBuffer();
     public static StringBuffer before = new StringBuffer();
     public static int i = 1;
 
 
-    @Override
+
     public String getXml(String interfaceName, String methodName) {
 
         result.setLength(0);

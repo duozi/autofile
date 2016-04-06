@@ -1,7 +1,6 @@
 package com.qunar.flight.autofile.service;
 
 import com.qunar.flight.autofile.api.GetJsonService;
-import com.qunar.flight.autofile.api.GetXmlService;
 import com.qunar.flight.autofile.commom.JsonReflect;
 import com.qunar.flight.autofile.commom.StringUtil;
 import org.slf4j.Logger;
@@ -16,12 +15,12 @@ import java.lang.reflect.Type;
  */
 @Component
 public class GetJsonServiceImpl implements GetJsonService {
-    private final static Logger logger = LoggerFactory.getLogger(GetXmlService.class);
+    private final static Logger logger = LoggerFactory.getLogger(GetJsonServiceImpl.class);
     public static StringBuffer result = new StringBuffer();
     public static StringBuffer before = new StringBuffer();
     public static int i = 1;
 
-    @Override
+
     public String getJson(String interfaceName, String methodName) {
         result.setLength(0);
         before.setLength(0);
