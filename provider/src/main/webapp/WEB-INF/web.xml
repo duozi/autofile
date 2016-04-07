@@ -5,9 +5,7 @@
 <web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
-    <listener>
-        <listener-class>qunar.ServletWatcher</listener-class>
-    </listener>
+
 
     <!--因为ServletWatcher里调用了getParameter，请将下面的filter放置在ServletWatcher之前-->
     <filter>
@@ -37,8 +35,15 @@
         <filter-name>watcher</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-    <context-param>
 
+    <listener>
+        <listener-class>qunar.ServletWatcher</listener-class>
+    </listener>
+    <welcome-file-list>
+        <welcome-file>/index.html</welcome-file>
+    </welcome-file-list>
+
+    <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath:/spring.xml</param-value>
     </context-param>

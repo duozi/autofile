@@ -61,7 +61,7 @@ public class GetJsonServiceImpl implements GetJsonService {
                 }
             }
         }
-//        logger.info("{}", result);
+        logger.info("{}", result);
         return result.toString();
     }
 }
