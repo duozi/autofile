@@ -85,7 +85,6 @@
         <dependency>
             <groupId>qunar.common</groupId>
             <artifactId>common-core</artifactId>
-            <version>${qunar.common.version}</version>
         </dependency>
         <!--自己加的-->
 
