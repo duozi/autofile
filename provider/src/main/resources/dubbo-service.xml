@@ -1,0 +1,22 @@
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <dubbo:application name="f_qa_autofile_provider" owner="zhouxi.zhou" organization="flight"/>
+
+    <dubbo:registry address="zk.beta.corp.qunar.com:2181,zk1.beta.corp.qunar.com:2181,zk2.beta.corp.qunar.com:2181,zk3.beta.corp.qunar.com:2181" group="autofile_beta" protocol="zookeeper"  id="autofileZk" default="true"/>
+
+    <dubbo:protocol name="dubbo" port="20990"  accesslog="true"  threads="500"/>
+
+
+
+    <dubbo:service interface="com.qunar.flight.autofile.api.GetJsonService" ref="getJsonService" version="1.0.0"
+                   timeout="60000" registry="autofileZk" />
+
+    <dubbo:service interface="com.qunar.flight.autofile.api.GetXmlService" ref="getXmlService" version="1.0.0"
+                   timeout="60000" registry="autofileZk" />
+
+
+
+</beans>

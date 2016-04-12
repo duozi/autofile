@@ -15,6 +15,12 @@
     <dependencies>
         <dependency>
             <groupId>com.qunar.flight</groupId>
+            <artifactId>partner.api</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.qunar.flight</groupId>
             <artifactId>ibeplus.api</artifactId>
             <version>1.0.8</version>
         </dependency>

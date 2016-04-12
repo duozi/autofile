@@ -14,7 +14,7 @@ import java.lang.reflect.Type;
  * Created by zhouxi.zhou on 2016/3/12.
  */
 
-@Service(value = "getXmlServiceImpl")
+@Service(value = "getXmlService")
 public class GetXmlServiceImpl implements GetXmlService {
     private final static Logger logger = LoggerFactory.getLogger(GetXmlServiceImpl.class);
     public static StringBuffer result = new StringBuffer();
