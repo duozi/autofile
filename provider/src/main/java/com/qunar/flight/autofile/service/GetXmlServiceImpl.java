@@ -66,7 +66,7 @@ public class GetXmlServiceImpl implements GetXmlService {
                 }
             }
         }
-//        logger.info("{}", result);
+//        logger.debug("{}", result);
         return result.toString();
     }
 

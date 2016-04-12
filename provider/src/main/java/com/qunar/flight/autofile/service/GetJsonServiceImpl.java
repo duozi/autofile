@@ -24,6 +24,7 @@ public class GetJsonServiceImpl implements GetJsonService {
     public String getJson(String interfaceName, String methodName) {
         result.setLength(0);
         before.setLength(0);
+        i=1;
         Class<?> c = null;
         try {
             c = Class.forName(interfaceName);
@@ -46,7 +47,7 @@ public class GetJsonServiceImpl implements GetJsonService {
                         c = Class.forName(parname);
                         if (!JsonReflect.isBaseDataType(c)) {
                             JsonReflect f = new JsonReflect(c);
-                            StringUtil.addClassHead(result,c.getName(),before);
+//                            StringUtil.addClassHead(result,c.getName(),before);
                             f.getSuperClass(c, result, before);
                             StringUtil.addEnd(result,before);
                         }

@@ -120,7 +120,7 @@ public class JsonReflect {
                  * 调用obj类的getter函数
                  */
 
-                logger.info("{} default value is {}", property, String.valueOf(m.invoke(cls.newInstance())));
+                logger.debug("{} default value is {}", property, String.valueOf(m.invoke(cls.newInstance())));
                 String defaultValue = String.valueOf(m.invoke(cls.newInstance()));
                 if (!defaultValue.equals("null")) {
                     return defaultValue;
@@ -139,7 +139,7 @@ public class JsonReflect {
 
         Class superClass = cls.getSuperclass();
         String superClassName = superClass.getName();
-        logger.info("super class is {}", superClassName);
+        logger.debug("super class is {}", superClassName);
         if (!superClassName.contains("Object")) {
             getSuperClass(superClass, result, before);
 
@@ -156,11 +156,11 @@ public class JsonReflect {
         for (Field field : fields) {
             Class partype = field.getType();
             String name=partype.getName();
-            logger.info("param type is {}", partype.getName());
+            logger.debug("param type is {}", name);
 
 
             String fieldName = field.getName();
-            logger.info("param name is {}", fieldName);
+            logger.debug("param name is {}", fieldName);
             if (fieldName.equals("serialVersionUID")) {
                 continue;
             }
@@ -181,7 +181,7 @@ public class JsonReflect {
 
                         StringUtil.addJsonStartList(result, before);
                         StringUtil.addHead(result, before);
-                        logger.info("list class is {}", listClass.getName());
+                        logger.debug("list class is {}", listClass.getName());
                         getSuperClass(listClass, result, before);
                         StringUtil.addEnd(result, before);
                         StringUtil.addJsonEndList(result, before);
@@ -199,7 +199,7 @@ public class JsonReflect {
                         Field[] enumFields = partype.getDeclaredFields();
                         for (Field efield : enumFields) {
 
-                            logger.info("param type is {}", efield.getName());
+                            logger.debug("param type is {}", efield.getName());
                             enumString.append(efield.getName()).append("|");
                         }
 
@@ -277,7 +277,7 @@ public class JsonReflect {
             Type[] fieldArgTypes = aType.getActualTypeArguments();
             for (Type fieldArgType : fieldArgTypes) {
                 listClass = (Class) fieldArgType;
-                logger.info("listClass = " + listClass);
+                logger.debug("listClass = " + listClass);
             }
         }
         return listClass;

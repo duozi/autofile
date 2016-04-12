@@ -120,7 +120,7 @@ public class XmlReflect {
                  * 调用obj类的getter函数
                  */
 
-                logger.info("{} default value is {}", property, String.valueOf(m.invoke(cls.newInstance())));
+                logger.debug("{} default value is {}", property, String.valueOf(m.invoke(cls.newInstance())));
                 String defaultValue = String.valueOf(m.invoke(cls.newInstance()));
                 if (!defaultValue.equals("null")) {
                     StringUtil.addMidString(result, defaultValue);
@@ -139,7 +139,7 @@ public class XmlReflect {
 
         Class superClass = cls.getSuperclass();
         String superClassName = superClass.getName();
-        logger.info("super class is {}", superClassName);
+        logger.debug("super class is {}", superClassName);
         if (!superClassName.contains("Object")) {
             getSuperClass(superClass, result, before);
 
@@ -155,11 +155,11 @@ public class XmlReflect {
         Field[] fields = cls.getDeclaredFields();
         for (Field field : fields) {
             Class partype = field.getType();
-            logger.info("param type is {}", partype);
+            logger.debug("param type is {}", partype);
 
 
             String fieldName = field.getName();
-            logger.info("param name is {}", fieldName);
+            logger.debug("param name is {}", fieldName);
             if (fieldName.equals("serialVersionUID")) {
                 continue;
             }
@@ -182,7 +182,7 @@ public class XmlReflect {
                         String[] className = listClass.getName().split("\\.");
                         int length = className.length;
                         String name = className[length - 1];
-                        logger.info("list class is {}", className);
+                        logger.debug("list class is {}", className);
                         StringUtil.addXMLStartString(result, fieldName, before);
                         result.append("\n");
                         getSuperClass(listClass, result, before);
@@ -206,7 +206,7 @@ public class XmlReflect {
                         Field[] enumFields = partype.getDeclaredFields();
                         for (Field efield : enumFields) {
 
-                            logger.info("param type is {}", efield.getName());
+                            logger.debug("param type is {}", efield.getName());
                             enumString.append(efield.getName()).append("|");
                         }
                         StringUtil.addMidString(result, String.valueOf(enumString).replace("|$VALUES|", ""));
@@ -278,7 +278,7 @@ public class XmlReflect {
             Type[] fieldArgTypes = aType.getActualTypeArguments();
             for (Type fieldArgType : fieldArgTypes) {
                 listClass = (Class) fieldArgType;
-                logger.info("listClass = " + listClass);
+                logger.debug("listClass = " + listClass);
             }
         }
         return listClass;
