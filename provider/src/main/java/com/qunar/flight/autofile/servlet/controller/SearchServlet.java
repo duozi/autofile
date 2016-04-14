@@ -15,6 +15,7 @@ import java.io.IOException;
 /**
  * Created by zhouxi.zhou on 2016/4/13.
  */
+
 public class SearchServlet extends HttpServlet {
     private static final String XML = "xml";
     private static final String JSON = "json";
