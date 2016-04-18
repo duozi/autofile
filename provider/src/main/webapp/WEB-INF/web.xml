@@ -5,11 +5,14 @@
 <web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+
+    <display-name>Archetype Created Web Application</display-name>
+    <!--因为ServletWatcher里调用了getParameter，请将下面的filter放置在ServletWatcher之前-->
     <listener>
         <listener-class>qunar.ServletWatcher</listener-class>
     </listener>
 
-    <!--因为ServletWatcher里调用了getParameter，请将下面的filter放置在ServletWatcher之前-->
+
     <filter>
         <filter-name>encodingFilter</filter-name>
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -27,36 +30,47 @@
         <filter-name>encodingFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-
     <filter>
         <filter-name>watcher</filter-name>
         <filter-class>qunar.ServletWatcher</filter-class>
     </filter>
 
+
     <filter-mapping>
         <filter-name>watcher</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath:/spring.xml</param-value>
     </context-param>
-    <welcome-file-list>
-        <welcome-file>/getpar.html</welcome-file>
-    </welcome-file-list>
-    <servlet>
-        <servlet-name>SearchServlet</servlet-name>
-        <servlet-class>com.qunar.flight.autofile.servlet.controller.SearchServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>SearchServlet</servlet-name>
-        <url-pattern>/getpar</url-pattern>
-    </servlet-mapping>
-
 
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
-    <display-name>Archetype Created Web Application</display-name>
+
+
+    <servlet>
+        <servlet-name>springmvc</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>springmvc</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+    <!--<servlet>-->
+        <!--<servlet-name>SearchServlet</servlet-name>-->
+        <!--<servlet-class>com.qunar.flight.autofile.servlet.controller.SearchServlet</servlet-class>-->
+    <!--</servlet>-->
+    <!--<servlet-mapping>-->
+        <!--<servlet-name>SearchServlet</servlet-name>-->
+        <!--<url-pattern>/getpar</url-pattern>-->
+    <!--</servlet-mapping>-->
+
+
+    <welcome-file-list>
+        <welcome-file>/index.html</welcome-file>
+    </welcome-file-list>
 </web-app>
