@@ -22,7 +22,7 @@ public class GetJsonServiceImplTest extends TestCase {
 //        String s=getJsonService.getJson("com.qunar.ibeplus.api.itf.ITicketValidateService", "ticketValidate");
 
 //        String s=getJsonService.getJson("com.qunar.ibeplus.api.itf.IAirBookOrderService","bookOrder");
-        String s=getJsonService.getJson("com.qunar.partner.api.IDetrTnFJingzService","detrTnF");
+        String s=getJsonService.getJson("com.qunar.pidshare.global.api.service.SsService","ss");
         System.out.println(s);
     }
 

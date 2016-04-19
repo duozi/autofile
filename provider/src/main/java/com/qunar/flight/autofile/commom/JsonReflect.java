@@ -208,6 +208,7 @@ public class JsonReflect {
                         //其他自定义类
                         StringUtil.addJsonStart(result, fieldName, before);
                         result.append("\n");
+                        StringUtil.addHead(result,before);
                         getSonClass(partype, result, before);
                         StringUtil.addEnd(result, before);
                     }
