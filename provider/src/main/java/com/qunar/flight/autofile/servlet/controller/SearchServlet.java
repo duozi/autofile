@@ -1,6 +1,6 @@
 package com.qunar.flight.autofile.servlet.controller;
 
-import com.qunar.flight.autofile.commom.StringUtil;
+import com.qunar.flight.autofile.util.StringUtil;
 import com.qunar.flight.autofile.service.GetJsonServiceImpl;
 import com.qunar.flight.autofile.service.GetXmlServiceImpl;
 import org.apache.commons.lang.StringUtils;

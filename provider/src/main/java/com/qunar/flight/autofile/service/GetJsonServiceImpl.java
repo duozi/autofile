@@ -2,7 +2,7 @@ package com.qunar.flight.autofile.service;
 
 import com.qunar.flight.autofile.api.GetJsonService;
 import com.qunar.flight.autofile.commom.JsonReflect;
-import com.qunar.flight.autofile.commom.StringUtil;
+import com.qunar.flight.autofile.util.StringUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;

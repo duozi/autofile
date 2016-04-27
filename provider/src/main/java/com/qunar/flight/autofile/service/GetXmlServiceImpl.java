@@ -1,7 +1,7 @@
 package com.qunar.flight.autofile.service;
 
 import com.qunar.flight.autofile.api.GetXmlService;
-import com.qunar.flight.autofile.commom.StringUtil;
+import com.qunar.flight.autofile.util.StringUtil;
 import com.qunar.flight.autofile.commom.XmlReflect;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

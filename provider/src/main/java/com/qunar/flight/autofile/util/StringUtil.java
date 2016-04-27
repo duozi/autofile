@@ -1,4 +1,4 @@
-package com.qunar.flight.autofile.commom;
+package com.qunar.flight.autofile.util;
 
 import com.google.common.base.Strings;
 

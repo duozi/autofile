@@ -1,6 +1,7 @@
 package com.qunar.flight.autofile.commom;
 
 import com.qunar.flight.autofile.service.GetXmlServiceImpl;
+import com.qunar.flight.autofile.util.StringUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import qunar.api.pojo.DateTime;
