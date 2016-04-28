@@ -36,6 +36,7 @@ public class AutofileServiceImpl implements AutofileService {
         } catch (Exception e) {
             logger.error("down load jar failed!");
             resultString= "下载jar文件异常，可能是jar文件属性不正确";
+            return resultString;
 
         }
 
@@ -45,6 +46,7 @@ public class AutofileServiceImpl implements AutofileService {
         } catch (Exception e) {
             logger.error("load jar failed!");
             resultString= "加载jar包异常，可能是接口名或方法名不正确";
+            return resultString;
         }
         if (JSON.equalsIgnoreCase(autofileRequest.getType())) {
 
