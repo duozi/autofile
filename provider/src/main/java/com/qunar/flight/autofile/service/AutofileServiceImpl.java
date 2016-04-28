@@ -3,7 +3,7 @@ package com.qunar.flight.autofile.service;
 import com.qunar.flight.autofile.api.AutofileService;
 import com.qunar.flight.autofile.pojo.AutofileRequest;
 import com.qunar.flight.autofile.util.CloseJar;
-import com.qunar.flight.autofile.util.DownloadJar;
+import com.qunar.flight.autofile.util.OnloadJar;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,7 +32,7 @@ public class AutofileServiceImpl implements AutofileService {
         String resultString = StringUtils.EMPTY;
         String jarPath=StringUtils.EMPTY;
         try {
-            jarPath=DownloadJar.downloadFromUrl(autofileRequest.getGroupId(),autofileRequest.getArtifactId(),autofileRequest.getVersion());
+            jarPath= OnloadJar.downloadFromUrl(autofileRequest.getGroupId(), autofileRequest.getArtifactId(), autofileRequest.getVersion());
         } catch (Exception e) {
             logger.error("down load jar failed!");
             resultString= "下载jar文件异常，可能是jar文件属性不正确";
@@ -41,7 +41,7 @@ public class AutofileServiceImpl implements AutofileService {
 
         URLClassLoader loader=null;
         try {
-            loader=DownloadJar.autoLoad(jarPath);
+            loader= OnloadJar.autoLoad(jarPath);
         } catch (Exception e) {
             logger.error("load jar failed!");
             resultString= "加载jar包异常，可能是接口名或方法名不正确";

@@ -13,13 +13,13 @@ import java.net.URLClassLoader;
 /**
  * Created by zhouxi.zhou on 2016/4/26.
  */
-public class DownloadJar {
+public class OnloadJar {
     public static final String DIR = "/autofileAddJar/";
     public static final String SPLITE = "-";
     public static final String FILE_END = ".jar";
     public static final String URL_HEAD = "http://nexus.corp.qunar.com/nexus/service/local/artifact/maven/redirect?r=";
     public static final String SNAPSHOT = "-SNAPSHOT";
-    private final static Logger logger = LoggerFactory.getLogger(DownloadJar.class);
+    private final static Logger logger = LoggerFactory.getLogger(OnloadJar.class);
 
     public static URLClassLoader  autoLoad(String jarPath)throws Exception{
 
@@ -31,7 +31,7 @@ public class DownloadJar {
 
         } catch (MalformedURLException e) {
             e.printStackTrace();
-            throw new Exception("load jar error");
+            throw new Exception("load  jar error");
         }
 
     }
