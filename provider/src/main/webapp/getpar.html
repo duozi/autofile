@@ -6,9 +6,13 @@
 </head>
 <body style="height: 100%">
 <form action="/reflect" id="getpar" target="result">
-    <label for="interfaceString">接口</label><input type="text" id="interfaceString" name="interfaceString" >
-    <label for="methodString">方法</label><input type="text" id="methodString" name="methodString">
-    <label for="type">返回参数类型</label>
+    <label for="groupString">Jar文件属性&nbsp; </label><a href="http://nexus.corp.qunar.com/nexus/index.html#welcome" target="_blank">查询相关信息</a><p>
+    <label for="groupString">GroupId&nbsp; </label><input type="text" id="groupString" name="groupString" style="width:180px;">
+    <label for="artifactString">ArtifactId&nbsp; </label><input type="text" id="artifactString" name="artifactString" style="width:180px;">
+    <label for="versionString">Version&nbsp; </label><input type="text" id="versionString" name="versionString"><p>
+    <label for="interfaceString">接口&nbsp; </label><input type="text" id="interfaceString" name="interfaceString" style="width:300px;">
+    <label for="methodString">方法&nbsp; </label><input type="text" id="methodString" name="methodString">
+    <label for="type">返回参数类型&nbsp; </label>
     <select id="type" name="type">
         <option value="XML" selected="selected">XML</option>
         <option value="JSON" >JSON</option>

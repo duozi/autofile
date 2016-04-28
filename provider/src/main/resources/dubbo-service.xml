@@ -6,15 +6,14 @@
 
     <dubbo:registry address="zk.beta.corp.qunar.com:2181,zk1.beta.corp.qunar.com:2181,zk2.beta.corp.qunar.com:2181,zk3.beta.corp.qunar.com:2181" group="autofile_beta" protocol="zookeeper"  id="autofileZk" default="true"/>
 
-    <dubbo:protocol name="dubbo" port="20880"  accesslog="true"  threads="500"/>
+    <dubbo:protocol name="dubbo" port="20770"  accesslog="true"  threads="500"/>
 
 
 
-    <dubbo:service interface="com.qunar.flight.autofile.api.GetJsonService" ref="getJsonService" version="1.0.0"
+    <dubbo:service interface="com.qunar.flight.autofile.api.AutofileService" ref="autofileService" version="1.0.0"
                    timeout="60000" registry="autofileZk" />
 
-    <dubbo:service interface="com.qunar.flight.autofile.api.GetXmlService" ref="getXmlService" version="1.0.0"
-                   timeout="60000" registry="autofileZk" />
+
 
 
 

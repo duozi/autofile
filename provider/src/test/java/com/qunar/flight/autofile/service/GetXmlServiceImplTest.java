@@ -1,6 +1,5 @@
 package com.qunar.flight.autofile.service;
 
-import com.qunar.flight.autofile.api.GetXmlService;
 import junit.framework.TestCase;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,7 +11,7 @@ import javax.annotation.Resource;
 @ContextConfiguration(locations = { "classpath*:/spring.xml" })
 public class GetXmlServiceImplTest extends TestCase {
     @Resource
-    GetXmlService getXmlService;
+//    GetXmlService getXmlService;
     @Test
     public void test() {
         GetXmlServiceImpl getXmlService=new GetXmlServiceImpl();
@@ -21,8 +20,8 @@ public class GetXmlServiceImplTest extends TestCase {
 
 //        String s=getXmlService.getXml("com.qunar.ibeplus.api.itf.ITicketValidateService", "ticketValidate");
 
-        String s=getXmlService.getXml("com.qunar.pidshare.global.api.service.SsService", "ss");
-        System.out.println(s);
+//        String s=getXmlService.getXml("com.qunar.pidshare.global.api.service.SsService", "ss");
+//        System.out.println(s);
     }
 
 

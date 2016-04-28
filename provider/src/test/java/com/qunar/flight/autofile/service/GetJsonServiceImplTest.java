@@ -1,6 +1,5 @@
 package com.qunar.flight.autofile.service;
 
-import com.qunar.flight.autofile.api.GetJsonService;
 import junit.framework.TestCase;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,7 +11,7 @@ import javax.annotation.Resource;
 @ContextConfiguration(locations = { "classpath*:/spring.xml" })
 public class GetJsonServiceImplTest extends TestCase {
     @Resource
-    GetJsonService getJsonService;
+//    AutofileService getJsonService;
     @Test
     public void test() {
 //        GetJsonServiceImpl getJsonService=new GetJsonServiceImpl();
@@ -22,8 +21,8 @@ public class GetJsonServiceImplTest extends TestCase {
 //        String s=getJsonService.getJson("com.qunar.ibeplus.api.itf.ITicketValidateService", "ticketValidate");
 
 //        String s=getJsonService.getJson("com.qunar.ibeplus.api.itf.IAirBookOrderService","bookOrder");
-        String s=getJsonService.getJson("com.qunar.pidshare.global.api.service.SsService","ss");
-        System.out.println(s);
+//        String s=getJsonService.getJson("com.qunar.pidshare.global.api.service.SsService","ss");
+//        System.out.println(s);
     }
 
 

@@ -1,35 +1,34 @@
 package com.qunar.flight.autofile.service;
 
-import com.qunar.flight.autofile.api.GetXmlService;
-import com.qunar.flight.autofile.util.StringUtil;
 import com.qunar.flight.autofile.commom.XmlReflect;
+import com.qunar.flight.autofile.util.StringUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Type;
+import java.net.URLClassLoader;
 
 /**
  * Created by zhouxi.zhou on 2016/3/12.
  */
 
 @Service(value = "getXmlService")
-public class GetXmlServiceImpl implements GetXmlService {
+public class GetXmlServiceImpl {
     private final static Logger logger = LoggerFactory.getLogger(GetXmlServiceImpl.class);
     public static StringBuffer result = new StringBuffer();
     public static StringBuffer before = new StringBuffer();
     public static int i = 1;
 
 
-
-    public String getXml(String interfaceName, String methodName) {
+    public String getXml(URLClassLoader loader, String interfaceName, String methodName) {
 
         result.setLength(0);
         before.setLength(0);
         Class<?> c = null;
         try {
-            c = Class.forName(interfaceName);
+            c = loader.loadClass(interfaceName);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -47,7 +46,7 @@ public class GetXmlServiceImpl implements GetXmlService {
                     result.append("\n");
 
                     try {
-                        c = Class.forName(parname);
+                        c = loader.loadClass(parname);
                         if (!XmlReflect.isBaseDataType(c)) {
                             XmlReflect f = new XmlReflect(c);
                             f.getSuperClass(c, result, before);
@@ -66,46 +65,11 @@ public class GetXmlServiceImpl implements GetXmlService {
                 }
             }
         }
-//        logger.debug("{}", result);
+        logger.info("{}", result);
         return result.toString();
     }
 
-    public static void main(String[] args) {
 
-        String s = " \"outboundFlights\": [\n" +
-                "                        {\n" +
-                "                            \"allowedPieces\": 0,\n" +
-                "                            \"allowedWeight\": 0,\n" +
-                "                            \"arr\": \"HKG\",\n" +
-                "                            \"arrDate\": \"20160329\",\n" +
-                "                            \"arrTime\": \"1335\",\n" +
-                "                            \"arrTower\": \"\",\n" +
-                "                            \"asr\": false,\n" +
-                "                            \"cabin\": \"H\",\n" +
-                "                            \"cabinStatuses\": [],\n" +
-                "                            \"dpt\": \"XIY\",\n" +
-                "                            \"dptDate\": \"20160329\",\n" +
-                "                            \"dptTime\": \"1110\",\n" +
-                "                            \"dptTower\": \"T3\",\n" +
-                "                            \"etkt\": true,\n" +
-                "                            \"flightNum\": \"MU223\",\n" +
-                "                            \"flightTime\": \"145\",\n" +
-                "                            \"meal\": \"L\",\n" +
-                "                            \"planeStyle\": \"320\",\n" +
-                "                            \"routNo\": null,\n" +
-                "                            \"share\": false,\n" +
-                "                            \"shareAirline\": null,\n" +
-                "                            \"shareFlightNum\": null,\n" +
-                "                            \"stopPoints\": [],\n" +
-                "                            \"stops\": 0\n" +
-                "                        }\n" +
-                "                    ]\n";
-//        Iterable<String> splitWhite = Splitter.on(",").trimResults().omitEmptyStrings().split(s);
-//        for (String s2 : splitWhite) {
-//            System.out.println(s2);
-//        }
-        System.out.println(s.replaceAll(" ","").length());
-    }
 }
 
 

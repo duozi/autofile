@@ -1,6 +1,5 @@
 package com.qunar.flight.autofile.service;
 
-import com.qunar.flight.autofile.api.GetJsonService;
 import com.qunar.flight.autofile.commom.JsonReflect;
 import com.qunar.flight.autofile.util.StringUtil;
 import org.slf4j.Logger;
@@ -9,25 +8,26 @@ import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Type;
+import java.net.URLClassLoader;
 
 /**
  * Created by zhouxi.zhou on 2016/3/12.
  */
 @Service(value = "getJsonService")
-public class GetJsonServiceImpl implements GetJsonService {
+public class GetJsonServiceImpl {
     private final static Logger logger = LoggerFactory.getLogger(GetJsonServiceImpl.class);
     public static StringBuffer result = new StringBuffer();
     public static StringBuffer before = new StringBuffer();
     public static int i = 1;
 
 
-    public String getJson(String interfaceName, String methodName) {
+    public String getJson(URLClassLoader loader, String interfaceName, String methodName) {
         result.setLength(0);
         before.setLength(0);
-        i=1;
+        i = 1;
         Class<?> c = null;
         try {
-            c = Class.forName(interfaceName);
+            c = loader.loadClass(interfaceName);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -42,14 +42,14 @@ public class GetJsonServiceImpl implements GetJsonService {
                     String parname = type.toString().substring(6);
                     StringUtil.addXMLStartString(result, "var" + i, before);
                     result.append("\n");
-                    StringUtil.addHead(result, before);
+
                     try {
-                        c = Class.forName(parname);
+                        c = loader.loadClass(parname);
                         if (!JsonReflect.isBaseDataType(c)) {
+                            StringUtil.addHead(result, before);
                             JsonReflect f = new JsonReflect(c);
-//                            StringUtil.addClassHead(result,c.getName(),before);
                             f.getSuperClass(c, result, before);
-                            StringUtil.addEnd(result,before);
+                            StringUtil.addEnd(result, before);
                         }
 
                     } catch (ClassNotFoundException e) {
