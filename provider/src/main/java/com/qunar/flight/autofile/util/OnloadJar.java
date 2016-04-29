@@ -42,7 +42,7 @@ public class OnloadJar {
         File folder = new File(DIR);
          if(!folder.exists()||!folder.isDirectory()){
              folder.mkdirs();
-             logger.info(folder.getPath());
+             logger.info("new a dir {}",folder.getPath());
          }
         if(folder.exists()&&folder.isDirectory()){
             logger.info("file is ready");
