@@ -26,6 +26,7 @@ public class GetXmlServiceImpl {
 
         result.setLength(0);
         before.setLength(0);
+        i=1;
         Class<?> c = null;
         try {
             c = loader.loadClass(interfaceName);
