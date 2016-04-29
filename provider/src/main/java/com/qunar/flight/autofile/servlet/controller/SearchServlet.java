@@ -53,7 +53,7 @@ public class SearchServlet {
             autofileRequest.setInterfaceName(interfaceString);
             autofileRequest.setMethodName(methodString);
             autofileRequest.setType(type);
-            logger.info("request={}", artifactString.toString());
+            logger.info("request={}", autofileRequest.toString());
             resultString = autofileServiceImpl.autofile(autofileRequest);
 
         }
