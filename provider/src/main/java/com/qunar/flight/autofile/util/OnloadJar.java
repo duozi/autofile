@@ -43,6 +43,9 @@ public class OnloadJar {
          if(!folder.exists()||!folder.isDirectory()){
              folder.mkdirs();
          }
+        if(folder.exists()&&folder.isDirectory()){
+            logger.info("file is ready");
+        }
 
         String fileName = DIR+artifact + SPLITE + version + FILE_END;
         if (StringUtils.isEmpty(fileName)) {
