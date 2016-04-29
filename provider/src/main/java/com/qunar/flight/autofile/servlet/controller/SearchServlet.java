@@ -30,6 +30,7 @@ public class SearchServlet {
     @Resource
     AutofileServiceImpl autofileServiceImpl;
     private final static Logger logger = LoggerFactory.getLogger(SearchServlet.class);
+
     @RequestMapping("/reflect")
     @ResponseBody
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -52,7 +53,7 @@ public class SearchServlet {
             autofileRequest.setInterfaceName(interfaceString);
             autofileRequest.setMethodName(methodString);
             autofileRequest.setType(type);
-
+            logger.info("request={}", artifactString.toString());
             resultString = autofileServiceImpl.autofile(autofileRequest);
 
         }
