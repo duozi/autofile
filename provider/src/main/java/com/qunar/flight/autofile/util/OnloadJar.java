@@ -14,7 +14,7 @@ import java.net.URLClassLoader;
  * Created by zhouxi.zhou on 2016/4/26.
  */
 public class OnloadJar {
-    public static final String DIR = "./autofileAddJar/";
+    public static final String DIR = "/autofileAddJar/";
     public static final String SPLITE = "-";
     public static final String FILE_END = ".jar";
     public static final String URL_HEAD = "http://nexus.corp.qunar.com/nexus/service/local/artifact/maven/redirect?r=";
@@ -39,16 +39,7 @@ public class OnloadJar {
 
 
     public static String downloadFromUrl(String group,String artifact, String version) throws Exception {
-        File folder = new File(DIR);
-         if(!folder.exists()||!folder.isDirectory()){
-             folder.mkdirs();
-             logger.info("new a dir {}",folder.getAbsolutePath());
-             folder = new File(DIR);
-         }
 
-        if(folder.exists()&&folder.isDirectory()){
-            logger.info("file is ready");
-        }
 
         String fileName = DIR+artifact + SPLITE + version + FILE_END;
         if (StringUtils.isEmpty(fileName)) {
