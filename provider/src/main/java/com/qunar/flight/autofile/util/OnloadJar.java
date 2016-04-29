@@ -14,8 +14,8 @@ import java.net.URLClassLoader;
  * Created by zhouxi.zhou on 2016/4/26.
  */
 public class OnloadJar {
-//    public static final String DIR = "/autofileAddJar/";
-    public static final String DIR = "c:\\";
+    public static final String DIR = "/autofileAddJar/";
+//    public static final String DIR = "c:\\";
     public static final String SPLITE = "-";
     public static final String FILE_END = ".jar";
     public static final String URL_HEAD = "http://nexus.corp.qunar.com/nexus/service/local/artifact/maven/redirect?r=";
