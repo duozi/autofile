@@ -5,7 +5,6 @@ import com.qunar.flight.autofile.util.StringUtil;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Type;
@@ -14,7 +13,7 @@ import java.lang.reflect.Type;
  * Created by zhouxi.zhou on 2016/3/12.
  */
 
-@Service(value = "getXmlService")
+
 public class GetXmlServiceImpl {
     private final static Logger logger = LoggerFactory.getLogger(GetXmlServiceImpl.class);
     public static StringBuffer result = new StringBuffer();
