@@ -3,30 +3,29 @@ package com.qunar.flight.autofile.service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.annotation.Resource;
-
 /**
  * Created by zhouxi.zhou on 2016/5/5.
  */
 public class AutofileService {
     private final static Logger logger = LoggerFactory.getLogger(AutofileService.class);
-    @Resource
-    GetJsonServiceImpl getJsonService;
-    @Resource
-    GetXmlServiceImpl getXmlService;
-    public void autofile(String interfaceName, String methodName,String type) {
-            try {
-                if (type.equalsIgnoreCase("json")) {
+
+
+    public static void autofile(String interfaceName, String methodName, String type) {
+
+        try {
+            if (type.equalsIgnoreCase("json")) {
+                GetJsonServiceImpl getJsonService = new GetJsonServiceImpl();
                 getJsonService.getJson(interfaceName, methodName);
-                } else if (type.equalsIgnoreCase("xml")) {
-                getXmlService.getXml( interfaceName, methodName);
+            } else if (type.equalsIgnoreCase("xml")) {
+                GetXmlServiceImpl getXmlService = new GetXmlServiceImpl();
+                getXmlService.getXml(interfaceName, methodName);
 
-                }
-
-                } catch (Exception e) {
-
-                e.printStackTrace();
             }
+
+        } catch (Exception e) {
+            logger.error("接口名或方法名不存在");
+            e.printStackTrace();
+        }
 
 
     }
