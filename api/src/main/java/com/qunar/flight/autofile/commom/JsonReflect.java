@@ -156,7 +156,7 @@ public class JsonReflect {
         Field[] fields = cls.getDeclaredFields();
         for (Field field : fields) {
             Class partype = field.getType();
-            String name=partype.getName();
+            String name = partype.getName();
             logger.debug("param type is {}", name);
 
 
@@ -172,8 +172,6 @@ public class JsonReflect {
              */
             try {
 
-                //if (!partype.getName().contains("java")) {
-
                 if (partype.getName().contains("java.util.List")) {
                     StringUtil.addJsonStart(result, fieldName, before);
                     Type genericFieldType = field.getGenericType();
@@ -186,9 +184,9 @@ public class JsonReflect {
                         getSuperClass(listClass, result, before);
                         StringUtil.addEnd(result, before);
                         StringUtil.addJsonEndList(result, before);
-                    }else if(listClass.getName().equals("java.lang.String")){
+                    } else if (listClass.getName().equals("java.lang.String")) {
                         result.append("[\"\"],\n");
-                    }else{
+                    } else {
                         result.append("[],\n");
                     }
 
@@ -204,12 +202,12 @@ public class JsonReflect {
                             enumString.append(efield.getName()).append("|");
                         }
 
-                        StringUtil.addJsonStringDefaultValue(result, String.valueOf(enumString).replace("|$VALUES|",""));
+                        StringUtil.addJsonStringDefaultValue(result, String.valueOf(enumString).replace("|$VALUES|", ""));
                     } else {
                         //其他自定义类
                         StringUtil.addJsonStart(result, fieldName, before);
                         result.append("\n");
-                        StringUtil.addHead(result,before);
+                        StringUtil.addHead(result, before);
                         getSonClass(partype, result, before);
                         StringUtil.addEnd(result, before);
                     }
@@ -224,6 +222,11 @@ public class JsonReflect {
                     if (partype.getName().equals("java.lang.String")) {
                         StringUtil.addJsonStringDefaultValue(result, defValue);
                     } else {
+                        if (defValue.equals("true")) {
+                            defValue = "1";
+                        } else if(defValue.equals("false")){
+                            defValue = "0";
+                        }
                         StringUtil.addJsonOtherDefaultValue(result, defValue);
                     }
 
