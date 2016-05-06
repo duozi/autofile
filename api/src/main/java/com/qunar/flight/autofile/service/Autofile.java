@@ -6,8 +6,8 @@ import org.slf4j.LoggerFactory;
 /**
  * Created by zhouxi.zhou on 2016/5/5.
  */
-public class AutofileService {
-    private final static Logger logger = LoggerFactory.getLogger(AutofileService.class);
+public class Autofile {
+    private final static Logger logger = LoggerFactory.getLogger(Autofile.class);
 
 
     public static void autofile(String interfaceName, String methodName, String type) {
