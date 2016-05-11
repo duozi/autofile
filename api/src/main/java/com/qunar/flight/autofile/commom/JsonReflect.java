@@ -222,11 +222,11 @@ public class JsonReflect {
                     if (partype.getName().equals("java.lang.String")) {
                         StringUtil.addJsonStringDefaultValue(result, defValue);
                     } else {
-                        if (defValue.equals("true")) {
-                            defValue = "1";
-                        } else if(defValue.equals("false")){
-                            defValue = "0";
-                        }
+//                        if (defValue.equals("true")) {
+//                            defValue = "1";
+//                        } else if(defValue.equals("false")){
+//                            defValue = "0";
+//                        }
                         StringUtil.addJsonOtherDefaultValue(result, defValue);
                     }
 
