@@ -63,12 +63,13 @@ public class GetXmlServiceImpl {
                             }
 
                         } else {
-                            parname = type.toString().substring(6);
-
-                            c = loader.loadClass(parname);
-                            if (!XmlReflect.isBaseDataType(c)) {
-                                XmlReflect f = new XmlReflect(c);
-                                f.getSuperClass(c, result, before);
+                            if (!type.toString().equals("boolean")) {
+                                parname = type.toString().substring(6);
+                                c = loader.loadClass(parname);
+                                if (!XmlReflect.isBaseDataType(c)) {
+                                    XmlReflect f = new XmlReflect(c);
+                                    f.getSuperClass(c, result, before);
+                                }
                             }
                         }
 

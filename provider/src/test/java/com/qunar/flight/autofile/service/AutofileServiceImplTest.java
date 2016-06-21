@@ -22,7 +22,7 @@ public class AutofileServiceImplTest extends TestCase {
 
 //        AutofileRequest searchRequest = new AutofileRequest("com.qunar.flight", "mct-api", "0.0.3", "com.qunar.flight.api.IMctService", "getMctTime", "json");
 
-        AutofileRequest searchRequest = new AutofileRequest("com.qunar.pidshare", "pidshare_dubbo.api", "1.3.16", "com.qunar.pidshare.global.api.service.SsPatService", "getPatPrice", "json");
+        AutofileRequest searchRequest = new AutofileRequest("com.qunar.pidshare", "pidshare_dubbo.api", "1.3.17", "com.qunar.pidshare.global.api.service.PnrRealService", "realCancelPnr", "xml");
 
 
         String s = autofileService.autofile(searchRequest);
