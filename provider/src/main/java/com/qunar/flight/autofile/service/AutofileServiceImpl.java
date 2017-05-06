@@ -1,16 +1,11 @@
 package com.qunar.flight.autofile.service;
 
-import com.qunar.flight.autofile.api.AutofileService;
-import com.qunar.flight.autofile.pojo.AutofileRequest;
 import com.qunar.flight.autofile.util.CloseJar;
 import com.qunar.flight.autofile.util.OnloadJar;
-import org.apache.commons.lang.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.net.URLClassLoader;
+import java.util.logging.Logger;
 
 /**
  * Created by zhouxi.zhou on 2016/4/27.
